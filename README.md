@@ -1,4 +1,9 @@
-# Langchain RAG Tutorial
+# Llama Langchain RAG Project
+- **Course**: [CSCI-GA.2565](https://www.sainingxie.com/ml-spring24/)
+- **Institution**: New York University
+- **Term**: Spring 2024
+
+---
 
 Install dependencies.
 

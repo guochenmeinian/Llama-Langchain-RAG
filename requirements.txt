@@ -1,5 +1,8 @@
-langchain
-unstructured # Document loading
-chromadb # Vector storage
-openai # For embeddings
-tiktoken  # For embeddings
+langchain_community
+langchain-openai
+unstructured # document loading
+chromadb # vector storage
+openai # embeddings
+tiktoken  # embeddings
+python-dotenv # environment variable
+unstructured[md]

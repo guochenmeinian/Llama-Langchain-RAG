@@ -1,11 +1,17 @@
 import argparse
 from dataclasses import dataclass
 from langchain.vectorstores.chroma import Chroma
-from langchain.embeddings import OpenAIEmbeddings
-from langchain.chat_models import ChatOpenAI
+from langchain_openai import OpenAIEmbeddings
+#from langchain.chat_models import ChatOpenAI
+from langchain_openai import ChatOpenAI
 from langchain.prompts import ChatPromptTemplate
+from dotenv import load_dotenv
+import os
 
 CHROMA_PATH = "chroma"
+
+load_dotenv()
+openai_api_key = os.getenv('OPENAI_API_KEY')
 
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -41,7 +47,7 @@ def main():
     print(prompt)
 
     model = ChatOpenAI()
-    response_text = model.predict(prompt)
+    response_text = model.invoke(prompt)
 
     sources = [doc.metadata.get("source", None) for doc, _score in results]
     formatted_response = f"Response: {response_text}\nSources: {sources}"
