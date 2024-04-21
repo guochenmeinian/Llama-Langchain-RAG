@@ -1,14 +1,15 @@
-
 import argparse
-import os
 import shutil
+import os
+
+# https://python.langchain.com/docs/get_started/quickstart/
 from langchain.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain.schema.document import Document
-from get_embedding_function import get_embedding_function
 from langchain.vectorstores.chroma import Chroma
+
+from get_embedding_function import get_embedding_function
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
@@ -17,6 +18,10 @@ CHROMA_PATH = "chroma"
 DATA_PATH = "data"
 
 
+'''
+Populate vector database with chunks of knowledge
+Skip already processed files (even if the files have been modified)
+'''
 def main():
 
     # Check if the database should be cleared (using the --clear flag).
