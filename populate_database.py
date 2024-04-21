@@ -76,7 +76,19 @@ def add_to_chroma(chunks: list[Document]):
     if len(new_chunks):
         print(f"👉 Adding new documents: {len(new_chunks)}")
         new_chunk_ids = [chunk.metadata["id"] for chunk in new_chunks]
-        db.add_documents(new_chunks, ids=new_chunk_ids)
+        
+        # Set to maximum batch size allowed by ChromaDB
+        batch_size = 166  
+        total_chunks = len(new_chunks)
+
+        # ensure the Batch size does not exceed maximum batch size
+        for start in range(0, total_chunks, batch_size):
+            end = min(start + batch_size, total_chunks)
+            batch_chunks = new_chunks[start:end]
+            batch_ids = [chunk.metadata['id'] for chunk in batch_chunks]  # Corresponding IDs for the batch
+            db.add_documents(batch_chunks, ids=batch_ids)
+
+        #db.add_documents(new_chunks, ids=new_chunk_ids)
         db.persist()
     else:
         print("✅ No new documents to add")
