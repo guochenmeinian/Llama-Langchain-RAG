@@ -5,7 +5,7 @@
 
 ---
 
-The Llama Langchain RAG project is a specialized tool designed to support the learning and exploration of a specific domain (TBD). Utilizing the power of Retrieval-Augmented Generation (RAG) with a Language Model (LLM), the finetuned model provides detailed, contextually accurate answers to queries ranging.
+The Llama Langchain RAG project is a specialized tool designed to support the learning and exploration of a specific domain (TBD). Utilizing the power of Retrieval-Augmented Generation (RAG) with a Language Model (LLM), the finetuned model provides detailed, contextually accurate answers to queries.
 
 ---
 
