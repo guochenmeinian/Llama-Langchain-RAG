@@ -11,16 +11,19 @@ Install dependencies.
 pip install -r requirements.txt
 ```
 
-Create the Chroma DB.
-
-```python
-python create_database.py
+1. Create the Chroma DB:
+```
+python populate_database.py
 ```
 
-Query the Chroma DB.
-
-```python
-python query_data.py "How does Alice meet the Mad Hatter?"
+2. Run the selected LLM locally on a seperate terminal:
+```
+ollama serve
 ```
 
-You'll also need to set up an OpenAI account (and set the OpenAI key in your environment variable) for this to work.
+3. Query the Chroma DB:
+```
+python query.py "How to play Monopoly according to the PDF source?"
+```
+
+You'll also need to set up an OpenAI account (and set the OpenAI key in your .env as an environment variable) and download Ollama as well as a LLM for this to work.

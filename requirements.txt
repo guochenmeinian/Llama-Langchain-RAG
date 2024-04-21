@@ -1,8 +1,10 @@
 langchain_community
 langchain-openai
+pypdf # pdf loading; https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf/
 unstructured # document loading
 chromadb # vector storage
 openai # embeddings
 tiktoken  # embeddings
 python-dotenv # environment variable
 unstructured[md]
+boto3
