@@ -1,6 +1,8 @@
 import argparse
 import shutil
+import json
 import os
+
 from langchain.document_loaders.pdf import PyPDFDirectoryLoader
 from langchain.schema import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -43,7 +45,18 @@ def load_documents():
                         # Each Q&A pair is a document
                         documents.append(Document(page_content=qa_pair.strip(), metadata={"source": filename}))
 
-        # Implement other cases if possible
+        # Case 2: jsonl file
+        if filename.endswith('.jsonl'):
+            # Read the JSON Lines file and process each line
+            with open(file_path, 'r', encoding='utf-8') as file:
+                for line in file:
+                    json_line = json.loads(line.strip())
+                    prompt = json_line.get('prompt', '')
+                    completion = json_line.get('completion', '')
+                    content = prompt + " " + completion
+                    documents.append(Document(page_content=content, metadata={"source": filename}))
+
+        # Implement other cases if possible/necessary
 
     return documents
 
@@ -83,7 +96,7 @@ def calculate_chunk_ids(chunks):
     last_page_id = None
     current_chunk_index = 0
     for chunk in chunks:
-        current_page_id = f"{chunk.metadata['source']}:{chunk.metadata.get('page', 'N/A')}"
+        current_page_id = f"{chunk.metadata['source']}:{chunk.metadata.get('page', 'N/A')}" # the page number is for PDFs
         if current_page_id == last_page_id:
             current_chunk_index += 1
         else:

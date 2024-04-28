@@ -33,11 +33,11 @@ python populate_database.py
 
 3. Setup before being able to do inference:
 
-- Case 1: If you choose to run the selected LLM/Llama 3 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
+   - Case 1: If you choose to run the selected LLM/Llama 3 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
 
-- Case 2: If you choose to do inference online with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
+   - Case 2: If you choose to do inference online with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
 
-1. Query the Chroma DB:
+4. Query the Chroma DB:
 ```
 python query_data.py "Which role does Adam Goldberg plays?"
 ```

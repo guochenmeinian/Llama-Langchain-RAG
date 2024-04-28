@@ -1,17 +1,16 @@
 import os
-import replicate
-from langchain.prompts import ChatPromptTemplate
 import argparse
-from get_embedding_function import get_embedding_function
-from langchain.vectorstores.chroma import Chroma
+import replicate
 
+from langchain.prompts import ChatPromptTemplate
+from langchain.vectorstores.chroma import Chroma
 from langchain_community.llms.ollama import Ollama
 
+from get_embedding_function import get_embedding_function
+
 from dotenv import load_dotenv
-import os
 
 load_dotenv()
-openai_api_key = os.getenv('OPENAI_API_KEY')
 
 CHROMA_PATH = "chroma"
 PROMPT_TEMPLATE = """
@@ -31,14 +30,14 @@ def main():
     parser.add_argument("query_text", type=str, help="The query text.")
     args = parser.parse_args()
     query_text = args.query_text
-    query_base_70B_model(query_text) 
+    query_finetuned_model(query_text) 
 
 
 # specially fine-tuned for our task
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_finetuned_model(query_text: str):
     
-    training = replicate.trainings.get("h6ck7vye45rgm0cf29br7wx2pr")
+    training = replicate.trainings.get("3ac8b8mygxrgg0cf4dcvh6qwmg")
 
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)

@@ -7,5 +7,6 @@ chromadb # vector storage
 openai # embeddings
 tiktoken  # embeddings
 python-dotenv # environment variable
-unstructured[md]
+unstructured[md] # document loading
 boto3
+jsonl2json # convert jsonl to json
