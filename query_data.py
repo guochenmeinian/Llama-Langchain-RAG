@@ -13,8 +13,6 @@ import os
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
-os.environ['REPLICATE_API_TOKEN'] = "r8_PyGSPgk9JsLjDzNbHW7VvDNnrybKved3wIHYh"
-
 CHROMA_PATH = "chroma"
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
@@ -37,6 +35,7 @@ def main():
 
 
 # specially fine-tuned for our task
+# Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_finetuned_model(query_text: str):
     
     training = replicate.trainings.get("h6ck7vye45rgm0cf29br7wx2pr")
@@ -62,6 +61,8 @@ def query_finetuned_model(query_text: str):
     print(f"Sources: {sources}")
 
 
+# base llama3 model with 70B parameters
+# Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_base_70B_model(query_text: str):
     
     embedding_function = get_embedding_function()
