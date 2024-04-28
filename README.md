@@ -7,7 +7,7 @@
 
 ## Overview
 
-The Llama Langchain RAG project is a specialized tool designed to answer questions related to the sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Utilizing the power of Retrieval-Augmented Generation (RAG) coupled with a Language Model (LLM), this project employs [LLaMA 3](https://llama.meta.com/llama3/), finetuned with [replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters.
+The Llama Langchain RAG project is a specialized tool designed to answer questions related to the sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Utilizing the power of Retrieval-Augmented Generation (RAG) coupled with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), finetuned with [replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters.
 
 ---
 
@@ -33,7 +33,7 @@ python populate_database.py
 
 3. Setup before being able to do inference:
 
-   - Case 1: If you choose to run the selected LLM/Llama 3 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
+   - Case 1: If you choose to run the selected LLM/Llama 2 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
 
    - Case 2: If you choose to do inference online with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
 
@@ -46,7 +46,7 @@ In case the file size exceeds Github's recommended maximum file size of 50.00 MB
 
 
 ### Configuration (TO-DO):
-1. Finetune the LLaMA 3 model using domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)). In this project, we decided to create our own (Question-Answer based) key pairs for training and RAG
+1. Finetune the LLaMA 2 model using domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)). In this project, we decided to create our own (Question-Answer based) key pairs for training and RAG
 2. Store your domain-related files (txt or PDFs) in the `data` folder, such as *QA.txt* and *The Basics.pdf*, a vector database will be created within `chroma` folder for RAG. More content could be added as the project progresses.
 
 
