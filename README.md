@@ -22,9 +22,20 @@ The Llama Langchain RAG project is a specialized tool designed to answer questio
 ### Installation
 
 1. Install dependencies.
-```
-pip install -r requirements.txt
-```
+
+   - [Optional but recommended] 
+      - Create a virtual python environment with 
+      ```
+         python -m venv .venv
+      ```
+      - Activate it with 
+      ```
+         source .venv/bin/activate
+      ```
+   - Install dependencies with 
+      ```
+         pip install -r requirements.txt
+      ```
 
 2. Create the Chroma DB:
 ```
@@ -57,5 +68,5 @@ In case the file size exceeds Github's recommended maximum file size of 50.00 MB
 - [Building a RAG application from scratch using Python, LangChain, and the OpenAI API](https://www.youtube.com/watch?v=BrsocJb-fAo&t=3685s)
 - [Hugging Face + Langchain in 5 mins | Access 200k+ FREE AI models for your AI apps](https://www.youtube.com/watch?v=_j7JEDWuqLE&list=PLz-AnbJcjdrB76ziX7ciillmmBdi0IhvH&index=2)
 - [RAG系统：数据越多效果越好吗？](https://github.com/netease-youdao/QAnything/wiki/RAG%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%B6%8A%E5%A4%9A%E6%95%88%E6%9E%9C%E8%B6%8A%E5%A5%BD%E5%90%97%EF%BC%9F)
-
+- [🦙💬 Llama 2 Chat](https://github.com/dataprofessor/llama2?tab=readme-ov-file)
 

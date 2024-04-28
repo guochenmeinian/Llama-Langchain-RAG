@@ -1,12 +1,12 @@
+python-dotenv # environment variable
 langchain
 langchain_community
 langchain-openai
 pypdf # pdf loading; https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf/
 unstructured # document loading
+unstructured[md] # document loading
 chromadb # vector storage
 openai # embeddings
 tiktoken  # embeddings
-python-dotenv # environment variable
-unstructured[md] # document loading
 boto3
-jsonl2json # convert jsonl to json
+streamlit # for front-end
