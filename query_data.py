@@ -12,7 +12,7 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
-CHROMA_PATH = "chroma"
+CHROMA_PATH = "./chroma"
 PROMPT_TEMPLATE = """
 Answer the question based only on the following context:
 

@@ -14,8 +14,8 @@ from dotenv import load_dotenv
 load_dotenv()
 openai_api_key = os.getenv('OPENAI_API_KEY')
 
-CHROMA_PATH = "chroma"
-DATA_PATH = "data"
+CHROMA_PATH = "./chroma"
+DATA_PATH = "./data"
 
 def main():
     parser = argparse.ArgumentParser()
