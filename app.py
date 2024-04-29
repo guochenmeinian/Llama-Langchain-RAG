@@ -15,7 +15,7 @@ selected_option = 'LLaMA2'
 
 with st.sidebar:
     st.title('💬 Friends Chatbot')
-    st.write('This chatbot is based on a finetuned Llama 2 LLM model with RAG. Feel free to ask for questions related to the comsit "Friends".')
+    st.write('This chatbot offers several variants of the Llama 2 LLM model (finetuned / RAG). Feel free to ask for questions related to the comsit "Friends".')
     
     # Obtain Credentials
     if 'REPLICATE_API_TOKEN' in st.secrets:
