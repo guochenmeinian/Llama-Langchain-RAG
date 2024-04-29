@@ -13,6 +13,9 @@ st.set_page_config(page_title="💬 Friends Chatbot")
 
 selected_option = 'LLaMA2'
 
+def clear_chat_history():
+    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
+
 with st.sidebar:
     st.title('💬 Friends Chatbot')
     st.write('This chatbot offers several variants of the Llama 2 LLM model (finetuned / RAG). Feel free to ask for questions related to the comsit "Friends".')
@@ -29,11 +32,14 @@ with st.sidebar:
             st.success('Proceed to entering your prompt message!', icon='👉')
     os.environ['REPLICATE_API_TOKEN'] = replicate_api
     os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY'] # this is for the embedding model
+    
+    selected_option = st.sidebar.selectbox(
+        'Choose a LLaMA2 model:', 
+        ['LLaMA2', 'Finetuned LLaMA2', 'LLaMA2 with RAG', 'Finetuned LLaMA2 with RAG'],
+        key = 'model',
+        on_change=clear_chat_history
+    )
 
-    selected_option = st.sidebar.selectbox('Choose a LLaMA2 model:', ['LLaMA2', 'Finetuned LLaMA2', 'LLaMA2 with RAG', 'Finetuned LLaMA2 with RAG'])
-
-def clear_chat_history():
-    st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
 
 
