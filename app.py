@@ -28,6 +28,9 @@ with st.sidebar:
     os.environ['REPLICATE_API_TOKEN'] = replicate_api
     os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY'] # this is for the embedding model
 
+    st.write(os.environ['REPLICATE_API_TOKEN'])
+    st.write(os.environ['OPENAI_API_KEY'])
+
 def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
 st.sidebar.button('Clear Chat History', on_click=clear_chat_history)
