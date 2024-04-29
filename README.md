@@ -48,10 +48,16 @@ python populate_database.py
 
    - Case 2: If you choose to do inference online with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
 
-4. Query the Chroma DB:
+4. Test run to query the Chroma DB:
 ```
 python query_data.py "Which role does Adam Goldberg plays?"
 ```
+
+5. Start the App:
+```
+streamlit run app.py
+```
+ 
 
 In case the file size exceeds Github's recommended maximum file size of 50.00 MB, you may need to use [Git Large File Storage](https://git-lfs.github.com).
 

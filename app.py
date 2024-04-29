@@ -7,9 +7,6 @@ from query_data import query_finetuned_model, query_llama2_13B_model, query_llam
 from dotenv import load_dotenv
 load_dotenv()
 
-# Replicate Credentials
-replicate_api = os.getenv('REPLICATE_API_TOKEN')
-os.environ['REPLICATE_API_TOKEN'] = replicate_api
 
 # App title
 st.set_page_config(page_title="💬 Friends Chatbot")
@@ -17,7 +14,19 @@ st.set_page_config(page_title="💬 Friends Chatbot")
 with st.sidebar:
     st.title('💬 Friends Chatbot')
     st.write('This chatbot is based on a finetuned Llama 2 LLM model with RAG. Feel free to ask for questions related to the comsit "Friends".')
-    st.success('API key already provided!', icon='✅')
+    
+    # Obtain Credentials
+    if 'REPLICATE_API_TOKEN' in st.secrets:
+        st.success('API key already provided!', icon='✅')
+        replicate_api = st.secrets['REPLICATE_API_TOKEN']
+    else:
+        replicate_api = st.text_input('Enter Replicate API token:', type='password')
+        if not (replicate_api.startswith('r8_') and len(replicate_api)==40):
+            st.warning('Please enter your credentials!', icon='⚠️')
+        else:
+            st.success('Proceed to entering your prompt message!', icon='👉')
+    os.environ['REPLICATE_API_TOKEN'] = replicate_api
+    os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY'] # this is for the embedding model
 
 def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
