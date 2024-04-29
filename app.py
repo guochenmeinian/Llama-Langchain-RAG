@@ -2,7 +2,7 @@ import streamlit as st
 import replicate
 import os
 
-from query_data import query_finetuned_model, query_llama2_13B_model, query_llama2_70B_model
+from query_data import query_finetuned_rag, query_base_rag, query_llama2_70B_model
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -28,8 +28,6 @@ with st.sidebar:
     os.environ['REPLICATE_API_TOKEN'] = replicate_api
     os.environ['OPENAI_API_KEY'] = st.secrets['OPENAI_API_KEY'] # this is for the embedding model
 
-    st.write(os.environ['REPLICATE_API_TOKEN'])
-    st.write(os.environ['OPENAI_API_KEY'])
 
 def clear_chat_history():
     st.session_state.messages = [{"role": "assistant", "content": "How may I assist you today?"}]
@@ -57,7 +55,7 @@ def generate_llama2_response(prompt_input):
             string_dialogue += "Assistant: " + dict_message["content"] + "\n\n"
 
     # run selected model 
-    output = query_finetuned_model(f"{string_dialogue} {prompt_input} Assistant: ")
+    output = query_finetuned_rag(f"{string_dialogue} {prompt_input} Assistant: ")
 
     # example code
     #output = replicate.run('a16z-infra/llama13b-v2-chat:df7690f1994d94e96ad9d568eac121aecf50684a0b0963b25a41cc40061269e5', input={"prompt": f"{string_dialogue} {prompt_input} Assistant: ", "temperature":0.1, "top_p":0.9, "max_length":512, "repetition_penalty":1})
