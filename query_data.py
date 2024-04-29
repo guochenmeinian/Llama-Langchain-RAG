@@ -24,6 +24,12 @@ Answer the question based on the above context: {question}
 """
 
 
+# this is for fixing bugs related to chromadb when deployment
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+
+
 def main():
     # Create CLI.
     parser = argparse.ArgumentParser()

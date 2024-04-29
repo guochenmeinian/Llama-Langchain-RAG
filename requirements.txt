@@ -4,8 +4,8 @@ langchain_community
 langchain-openai
 pypdf # pdf loading; https://python.langchain.com/docs/modules/data_connection/document_loaders/pdf/
 pysqlite3-binary # fix bugs in streamlit
-chromadb # vector storage
+chromadb==0.4.17 # vector storage
 openai # embeddings
 tiktoken  # embeddings
-streamlit # for front-end
+streamlit==1.28.1 # for front-end
 replicate # for ml models
