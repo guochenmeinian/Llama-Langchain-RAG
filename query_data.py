@@ -36,7 +36,7 @@ def main():
     parser.add_argument("query_text", type=str, help="The query text.")
     args = parser.parse_args()
     query_text = args.query_text
-    query_base_rag(query_text) 
+    query_finetuned_rag(query_text) 
 
 
 # specially fine-tuned for our task
@@ -104,6 +104,7 @@ def query_base_rag(query_text: str):
     print(f"{output}\nSources: {sources}")
       
     return output
+
 
 
 
