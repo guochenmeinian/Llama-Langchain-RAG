@@ -7,7 +7,9 @@
 
 ## 🦙💬 Overview
 
-The Llama Langchain RAG project is an App designed to answer questions related to the sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. The app includes session chat history and provides an option to select multiple LLaMA2 API endpoints on Replicate. Utilizing the power of Retrieval-Augmented Generation (RAG) coupled with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), finetuned with [replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. 
+The Llama Langchain RAG project is an innovative application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. The app includes session chat history and provides an option to select multiple LLaMA2 API endpoints on Replicate. Utilizing the power of Retrieval-Augmented Generation (RAG) coupled with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), finetuned with [replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. 
+
+Note: This is the production version of the application and is optimized for deployment. Running it locally may require modifications to suit the development environment.
 
 ---
 
@@ -16,7 +18,7 @@ The Llama Langchain RAG project is an App designed to answer questions related t
 ### Prerequisites
 
 - Relative API key(s) (optional; e.g. for embedding model)
-- Python 3.9 or higher
+- Python 3.11 or higher
 - Git Large File Storage (LFS) for handling large datasets and model files
 
 ### Installation
@@ -46,7 +48,7 @@ python populate_database.py
 
    - Case 1: If you choose to run the selected LLM/Llama 2 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
 
-   - Case 2: If you choose to do inference online with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
+   - Case 2: If you choose to do inference with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
 
 4. Test run to query the Chroma DB:
 ```

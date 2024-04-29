@@ -43,8 +43,6 @@ def main():
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_finetuned_rag(query_text: str):
     
-    training = replicate.trainings.get("3ac8b8mygxrgg0cf4dcvh6qwmg")
-
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
 
@@ -56,20 +54,64 @@ def query_finetuned_rag(query_text: str):
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
 
-    response_text = replicate.run(
-      training.output["version"],
-      input={"prompt": prompt, "stop_sequences": "</s>"}
+    output = ""
+
+    result = replicate.run(
+        "jy2575/tri_s1_s2_13b:8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a",
+        input={
+            "debug": False,
+            "top_k": 50,
+            "top_p": 0.9,
+            "temperature": 0.75,
+            "system_prompt": "",
+            "max_new_tokens": 128,
+            "min_new_tokens": -1,
+            "prompt": prompt
+        }
     )
+
+    # The jy2575/tri_s1_s2_13b model can stream output as it's running.
+    # The predict method returns an iterator, and you can iterate over that output.
+    for item in result:
+        # https://replicate.com/jy2575/tri_s1_s2_13b/api#output-schema
+        output += item
     
-    output = "".join(response_text)  # Assuming response_text is iterable and contains strings.
     print(f"{output}\nSources: {sources}")
 
     return output
 
 
-# base llama2 model with 13B parameters
+# finetuned llama2 model
+def query_finetuned(query_text: str):
+    
+    output = ""
+
+    result = replicate.run(
+        "jy2575/tri_s1_s2_13b:8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a",
+        input={
+            "debug": False,
+            "top_k": 50,
+            "top_p": 0.9,
+            "temperature": 0.75,
+            "system_prompt": "",
+            "max_new_tokens": 128,
+            "min_new_tokens": -1,
+            "prompt": query_text
+        }
+    )
+
+    # The jy2575/tri_s1_s2_13b model can stream output as it's running.
+    # The predict method returns an iterator, and you can iterate over that output.
+    for item in result:
+        # https://replicate.com/jy2575/tri_s1_s2_13b/api#output-schema
+        output += item
+
+    return output
+
+
+# base llama2 model with 13B parameters with RAG
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
-def query_base_rag(query_text: str):
+def query_rag(query_text: str):
     
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
@@ -92,7 +134,7 @@ def query_base_rag(query_text: str):
             "top_p": 1,
             "prompt": prompt,
             "temperature": 0.75,
-            "system_prompt": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.",
+            "system_prompt": "",
             "length_penalty": 1,
             "max_new_tokens": 500,
             "prompt_template": "<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{prompt} [/INST]",
@@ -106,6 +148,7 @@ def query_base_rag(query_text: str):
     return output
 
 
+# base llama2 model with 13B parameters
 def query_base(query_text: str):
     
     output = ""
@@ -118,7 +161,7 @@ def query_base(query_text: str):
             "top_p": 1,
             "prompt": query_text,
             "temperature": 0.75,
-            "system_prompt": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.",
+            "system_prompt": "",
             "length_penalty": 1,
             "max_new_tokens": 500,
             "prompt_template": "<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{prompt} [/INST]",
@@ -128,6 +171,7 @@ def query_base(query_text: str):
         output += str(event)
       
     return output
+
 
 
 
