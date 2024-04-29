@@ -43,7 +43,7 @@ def main():
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_finetuned_rag(query_text: str):
     
-    training = replicate.trainings.get("3ac8b8mygxrgg0cf4dcvh6qwmg")
+    training = replicate.trainings.get("8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a")
 
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
@@ -106,7 +106,28 @@ def query_base_rag(query_text: str):
     return output
 
 
+def query_base(query_text: str):
+    
+    output = ""
 
+    # The meta/llama-2-13b-chat model can stream output as it's running.
+    for event in replicate.stream(
+        "meta/llama-2-13b-chat",
+        input={
+            "top_k": 0,
+            "top_p": 1,
+            "prompt": query_text,
+            "temperature": 0.75,
+            "system_prompt": "You are a helpful, respectful and honest assistant. Always answer as helpfully as possible, while being safe. Your answers should not include any harmful, unethical, racist, sexist, toxic, dangerous, or illegal content. Please ensure that your responses are socially unbiased and positive in nature.\n\nIf a question does not make any sense, or is not factually coherent, explain why instead of answering something not correct. If you don't know the answer to a question, please don't share false information.",
+            "length_penalty": 1,
+            "max_new_tokens": 500,
+            "prompt_template": "<s>[INST] <<SYS>>\n{system_prompt}\n<</SYS>>\n\n{prompt} [/INST]",
+            "presence_penalty": 0
+        },
+    ):
+        output += str(event)
+      
+    return output
 
 
 
