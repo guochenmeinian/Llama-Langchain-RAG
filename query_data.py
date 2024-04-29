@@ -1,10 +1,8 @@
 import os
-import sys
 import argparse
 import replicate
 
 from langchain.prompts import ChatPromptTemplate
-from langchain.vectorstores.chroma import Chroma
 from langchain_community.llms.ollama import Ollama
 
 from get_embedding_function import get_embedding_function
@@ -26,8 +24,10 @@ Answer the question based on the above context: {question}
 
 
 # this is for fixing bugs related to chromadb when deployment
+import sys
 __import__('pysqlite3')
 sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
+from langchain.vectorstores.chroma import Chroma
 
 
 def main():
