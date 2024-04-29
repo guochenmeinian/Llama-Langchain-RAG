@@ -43,7 +43,7 @@ def main():
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
 def query_finetuned_rag(query_text: str):
     
-    training = replicate.trainings.get("8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a")
+    training = replicate.trainings.get("3ac8b8mygxrgg0cf4dcvh6qwmg")
 
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
