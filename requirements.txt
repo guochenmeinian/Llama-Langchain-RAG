@@ -10,3 +10,4 @@ openai # embeddings
 tiktoken  # embeddings
 boto3
 streamlit # for front-end
+replicate # for ml models

@@ -54,15 +54,16 @@ def query_finetuned_model(query_text: str):
       training.output["version"],
       input={"prompt": prompt, "stop_sequences": "</s>"}
     )
-    for s in response_text:
-      print(s, end="", flush=True)
+    
+    output = "".join(response_text)  # Assuming response_text is iterable and contains strings.
+    print(f"{output}\nSources: {sources}")
 
-    print(f"Sources: {sources}")
+    return output
 
 
 # base llama2 model with 70B parameters
 # Note: need `REPLICATE_API_TOKEN` as an environment variable
-def query_base_70B_model(query_text: str):
+def query_llama2_70B_model(query_text: str):
     
     embedding_function = get_embedding_function()
     db = Chroma(persist_directory=CHROMA_PATH, embedding_function=embedding_function)
@@ -74,6 +75,8 @@ def query_base_70B_model(query_text: str):
     context_text = "\n\n---\n\n".join([doc.page_content for doc, _score in results])
     prompt_template = ChatPromptTemplate.from_template(PROMPT_TEMPLATE)
     prompt = prompt_template.format(context=context_text, question=query_text)
+
+    output = ""
 
     # The meta/llama-2-70b-chat model can stream output as it's running.
     for event in replicate.stream(
@@ -91,9 +94,11 @@ def query_base_70B_model(query_text: str):
             "presence_penalty": 0
         },
     ):
-        print(str(event), end="")
-      
-    print(f"\nSources: {sources}")
+        output += str(event)
+    
+    print(f"{output}\nSources: {sources}")
+
+    return output
 
 
 # base llama2 model with 13B parameters
