@@ -64,10 +64,15 @@ streamlit run app.py
 In case the file size exceeds Github's recommended maximum file size of 50.00 MB, you may need to use [Git Large File Storage](https://git-lfs.github.com).
 
 
-### Configuration (TO-DO):
-1. Finetune the LLaMA 2 model using domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)). In this project, we decided to create our own (Question-Answer based) key pairs for training and RAG
-2. Store your domain-related files (txt or PDFs) in the `data` folder, such as *QA.txt* and *The Basics.pdf*, a vector database will be created within `chroma` folder for RAG. More content could be added as the project progresses.
-3. Implement front-end and deploy with Streamlit.
+### Configuration & Features:
+1. Finetuning usually involves using a domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)), in this project, we decided to curate our own (Question-Answer) pairs dataset for training and RAG.
+2. Domain-related files (txt or PDFs) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl*, a vector database is created in `chroma` folder based on the data for RAG. More content could be added as needed.
+3. The front-end and deployment is implemented with Streamlit.
+4. Chat history is maintained for each session (if you refresh, chat history clears).
+5. Option to select between differnet Llama2 chat API endpoints (finetuned-rag, finetuned, rag, base13B).
+6. Each model (finetuned-rag, finetuned, rag, base13B) runs on Replicate.
+
+This app was refactored from [dataprofessor's implementation](https://github.com/dataprofessor/llama2/tree/master) and [a16z's implementation](https://github.com/a16z-infra/llama2-chatbot) of their LLaMA2 Chatbot.
 
 
 ### Resources:
