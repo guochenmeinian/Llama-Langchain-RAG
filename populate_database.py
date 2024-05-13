@@ -50,11 +50,12 @@ def load_documents():
             # Read the JSON Lines file and process each line
             with open(file_path, 'r', encoding='utf-8') as file:
                 for line in file:
-                    json_line = json.loads(line.strip())
-                    prompt = json_line.get('prompt', '')
-                    completion = json_line.get('completion', '')
-                    content = prompt + " " + completion
-                    documents.append(Document(page_content=content, metadata={"source": filename}))
+                    if line.strip(): # ensure the line is not empty
+                        json_line = json.loads(line.strip())
+                        prompt = json_line.get('prompt', '')
+                        completion = json_line.get('completion', '')
+                        content = prompt + " " + completion
+                        documents.append(Document(page_content=content, metadata={"source": filename}))
 
         # Implement other cases if possible/necessary
 
