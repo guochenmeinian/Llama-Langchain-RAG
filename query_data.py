@@ -57,7 +57,7 @@ def query_finetuned_rag(query_text: str):
     output = ""
 
     result = replicate.run(
-        "jy2575/tri_s1_s2_13b:8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a",
+        "jy2575/tri_s1_s4:b89e95ca503efb72c2ef8800e7797bb53cf8533ec7d56861fd9825e04a3f27e3",
         input={
             "debug": False,
             "top_k": 50,
@@ -87,7 +87,7 @@ def query_finetuned(query_text: str):
     output = ""
 
     result = replicate.run(
-        "jy2575/tri_s1_s2_13b:8c50a12a176c2e887a4fcf28495d75d733d7cc72c3a6f5cf68a36d6e96d9ff6a",
+        "jy2575/tri_s1_s4:b89e95ca503efb72c2ef8800e7797bb53cf8533ec7d56861fd9825e04a3f27e3",
         input={
             "debug": False,
             "top_k": 50,
