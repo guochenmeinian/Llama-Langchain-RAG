@@ -46,16 +46,18 @@ python populate_database.py
 
 3. Setup before being able to do inference:
 
-   - Case 1: If you choose to run the selected LLM/Llama 2 locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
+   - Case 1: If you choose to run the base Llama 2 model locally, you'll need to have [Ollama](https://ollama.com/) installed and run `ollama serve` in a seperate terminal.
 
-   - Case 2: If you choose to do inference with replicate, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
+   - Case 2: If you choose to do inference with replicate with our models locally, you'll need to have `REPLICATE_API_TOKEN` setup as an environment variable.
 
-4. Test run to query the Chroma DB:
+   - Case 3: You can simply test run our deployed project on streamlit: **friends-rag.streamlit.app**.
+
+4. Test run to query the Chroma DB, the below command will return an output based on RAG and the selected model:
 ```
 python query_data.py "Which role does Adam Goldberg plays?"
 ```
 
-5. Start the App:
+5. Start the App locally:
 ```
 streamlit run app.py
 ```
@@ -65,8 +67,8 @@ In case the file size exceeds Github's recommended maximum file size of 50.00 MB
 
 
 ### Configuration & Features:
-1. Finetuning usually involves using a domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)), in this project, we decided to curate our own (Question-Answer) pairs dataset for training and RAG.
-2. Domain-related files (txt or PDFs) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl*, a vector database is created in `chroma` folder based on the data for RAG. More content could be added as needed.
+1. Finetuning usually involves using a domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)). In this project, we decided to curate our own (Question-Answer) pairs dataset for finetuning and RAG.
+2. Domain-related files (txt, jsonl or PDFs) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl* (prompt.txt shows how we prepared the jsonl input files for finetuning the model via prompt engineering.). Using Langchain, a vector database was created in `chroma` folder based on the data for RAG. More content could be added as needed. 
 3. The front-end and deployment is implemented with Streamlit.
 4. Chat history is maintained for each session (if you refresh, chat history clears).
 5. Option to select between differnet Llama2 chat API endpoints (finetuned-rag, finetuned, rag, base13B).
