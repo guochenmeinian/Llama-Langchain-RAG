@@ -11,6 +11,8 @@ The Llama Langchain RAG project is an application designed specifically for fans
 
 **Try our app**: [friends-rag.streamlit.app/](https://friends-rag.streamlit.app/)
 
+**Sample queries you can use**: [evaluation.txt](/evaluation.txt)
+
 **Note on Model Initialization**: The first prediction request from fine-tuned models like "Finetuned LLaMA2" and "Finetuned LLaMA2 with RAG" will take longer (expect 3 to 5 minutes) after a period of inactivity due to a "cold boot," where the model needs to be fetched and loaded. Subsequent requests will respond much quicker. More details on cold boots can be found [here](https://replicate.com/docs/how-does-replicate-work#cold-boots).
 
 
