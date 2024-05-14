@@ -5,15 +5,19 @@
 
 ---
 
-## 🦙💬 Overview
+## Overview
 
-The Llama Langchain RAG project is an innovative application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Utilizing the power of Retrieval-Augmented Generation (RAG) coupled with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), finetuned with [Replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. The app is deployed using [Streamlit](https://streamlit.io/), it includes session chat history and provides an option to select multiple LLaMA2 API endpoints on Replicate. 
+The Llama Langchain RAG project is an application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Using the power of Retrieval-Augmented Generation (RAG) combined with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), fine-tuned with [Replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. The app is deployed using [Streamlit](https://streamlit.io/), includes session chat history, and provides an option to select multiple LLaMA2 API endpoints on Replicate.
+
+
 
 **Note:** This is the production version of the application and is optimized for deployment. Running it locally may require modifications to suit the development environment.
 
 ---
 
 ## Getting Started
+
+**Note on Model Initialization**: The first prediction request from fine-tuned models like "Finetuned LLaMA2" and "Finetuned LLaMA2 with RAG" will take longer after a period of inactivity due to a "cold boot," where the model needs to be fetched and loaded. Subsequent requests will respond much quicker. More details on cold boots can be found [here](https://replicate.com/docs/how-does-replicate-work#cold-boots).
 
 ### Prerequisites
 
@@ -67,14 +71,13 @@ In case the file size exceeds Github's recommended maximum file size of 50.00 MB
 
 
 ### Configuration & Features:
-1. Finetuning usually involves using a domain related dataset (e.g. [Sujet Finance](https://huggingface.co/datasets/sujet-ai/Sujet-Finance-Instruct-177k), [Music-Wiki](https://huggingface.co/datasets/seungheondoh/music-wiki), [MusicPile](https://huggingface.co/datasets/m-a-p/MusicPile?row=29)). In this project, we decided to curate our own (Question-Answer) pairs dataset for finetuning and RAG.
-2. Domain-related files (txt, jsonl or PDFs) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl* (prompt.txt shows how we prepared the jsonl input files for finetuning the model via prompt engineering.). Using Langchain, a vector database was created in `chroma` folder based on the data for RAG. More content could be added as needed. 
+1. Finetuning usually involves using a domain related dataset. In this project, we decided to curate our own (Question-Answer) pairs dataset for finetuning and RAG.
+2. Domain-related files (txt and jsonl) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl*. Using Langchain, a vector database was created in `chroma` folder based on the data for RAG. More content could be added as needed. 
 3. The front-end and deployment is implemented with Streamlit.
-4. Chat history is maintained for each session (if you refresh, chat history clears).
-5. Option to select between differnet Llama2 chat API endpoints (finetuned-rag, finetuned, rag, base13B).
-6. Each model (finetuned-rag, finetuned, rag, base13B) runs on Replicate.
+4. Option to select between differnet Llama2 chat API endpoints (base LLaMA2, finetuned LLaMA2, base with RAG, finetuned with RAG).
+5. Each model (base LLaMA2, finetuned LLaMA2, base with RAG, finetuned with RAG) runs on Replicate.
 
-This app was refactored from [dataprofessor's implementation](https://github.com/dataprofessor/llama2/tree/master) and [a16z's implementation](https://github.com/a16z-infra/llama2-chatbot) of their LLaMA2 Chatbot.
+The frontend was refactored from [a16z's implementation](https://github.com/a16z-infra/llama2-chatbot) of their LLaMA2 chatbot.
 
 
 ### Resources:
@@ -83,7 +86,7 @@ This app was refactored from [dataprofessor's implementation](https://github.com
 - [RAG + Langchain Python Project: Easy AI/Chat For Your Docs](https://www.youtube.com/watch?v=tcqEUSNCn8I)
 - [Building a RAG application from scratch using Python, LangChain, and the OpenAI API](https://www.youtube.com/watch?v=BrsocJb-fAo&t=3685s)
 - [Hugging Face + Langchain in 5 mins | Access 200k+ FREE AI models for your AI apps](https://www.youtube.com/watch?v=_j7JEDWuqLE&list=PLz-AnbJcjdrB76ziX7ciillmmBdi0IhvH&index=2)
-- [RAG系统：数据越多效果越好吗？](https://github.com/netease-youdao/QAnything/wiki/RAG%E7%B3%BB%E7%BB%9F%EF%BC%9A%E6%95%B0%E6%8D%AE%E8%B6%8A%E5%A4%9A%E6%95%88%E6%9E%9C%E8%B6%8A%E5%A5%BD%E5%90%97%EF%BC%9F)
+
 - [🦙💬 Llama 2 Chat](https://github.com/dataprofessor/llama2?tab=readme-ov-file)
 - [Deploy with Streamlit: Secrets management](https://docs.streamlit.io/deploy/streamlit-community-cloud/deploy-your-app/secrets-management)
 - [Streamlit Cheatsheet](https://docs.streamlit.io/develop/quick-reference/cheat-sheet)
