@@ -3,21 +3,24 @@
 - **Institution**: New York University
 - **Term**: Spring 2024
 
----
+
 
 ## Overview
 
 The Llama Langchain RAG project is an application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Using the power of Retrieval-Augmented Generation (RAG) combined with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), fine-tuned with [Replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. The app is deployed using [Streamlit](https://streamlit.io/), includes session chat history, and provides an option to select multiple LLaMA2 API endpoints on Replicate.
 
+**Try our app**: [friends-rag.streamlit.app/](https://friends-rag.streamlit.app/)
+
+**Note on Model Initialization**: The first prediction request from fine-tuned models like "Finetuned LLaMA2" and "Finetuned LLaMA2 with RAG" will take longer (expect 3 to 5 minutes) after a period of inactivity due to a "cold boot," where the model needs to be fetched and loaded. Subsequent requests will respond much quicker. More details on cold boots can be found [here](https://replicate.com/docs/how-does-replicate-work#cold-boots).
 
 
 **Note:** This is the production version of the application and is optimized for deployment. Running it locally may require modifications to suit the development environment.
 
----
+
 
 ## Getting Started
 
-**Note on Model Initialization**: The first prediction request from fine-tuned models like "Finetuned LLaMA2" and "Finetuned LLaMA2 with RAG" will take longer after a period of inactivity due to a "cold boot," where the model needs to be fetched and loaded. Subsequent requests will respond much quicker. More details on cold boots can be found [here](https://replicate.com/docs/how-does-replicate-work#cold-boots).
+
 
 ### Prerequisites
 
