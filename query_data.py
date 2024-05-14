@@ -70,10 +70,10 @@ def query_finetuned_rag(query_text: str):
         }
     )
 
-    # The jy2575/tri_s1_s2_13b model can stream output as it's running.
+    # The jy2575/tri_s1_s4 model can stream output as it's running.
     # The predict method returns an iterator, and you can iterate over that output.
     for item in result:
-        # https://replicate.com/jy2575/tri_s1_s2_13b/api#output-schema
+        # https://replicate.com/jy2575/tri_s1_s4/api#output-schema
         output += item
     
     print(f"{output}\nSources: {sources}")
@@ -100,10 +100,10 @@ def query_finetuned(query_text: str):
         }
     )
 
-    # The jy2575/tri_s1_s2_13b model can stream output as it's running.
+    # The jy2575/tri_s1_s4 model can stream output as it's running.
     # The predict method returns an iterator, and you can iterate over that output.
     for item in result:
-        # https://replicate.com/jy2575/tri_s1_s2_13b/api#output-schema
+        # https://replicate.com/jy2575/tri_s1_s4/api#output-schema
         output += item
 
     return output
