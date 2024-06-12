@@ -7,7 +7,7 @@
 
 ## Overview
 
-The Llama Langchain RAG project is an application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Using the power of Retrieval-Augmented Generation (RAG) combined with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), fine-tuned with [Replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. The app is deployed using [Streamlit](https://streamlit.io/), includes session chat history, and provides an option to select multiple LLaMA2 API endpoints on Replicate.
+The Llama Langchain RAG project is an application designed specifically for fans of the beloved sitcom [**Friends**](https://en.wikipedia.org/wiki/Friends) for fun. Using the power of Retrieval-Augmented Generation (RAG) combined with a Language Model (LLM), this project employs [LLaMA 2](https://llama.meta.com/llama2/), fine-tuned with Lora technique using [Replicate](https://replicate.com/docs/guides/fine-tune-a-language-model) to provide detailed, contextually accurate answers to complex queries related to content, plot, and characters. The app is deployed using [Streamlit](https://streamlit.io/), includes session chat history, and provides an option to select multiple LLaMA2 API endpoints on Replicate.
 
 **Try our app**: [friends-rag.streamlit.app/](https://friends-rag.streamlit.app/)
 
