@@ -1,3 +1,9 @@
+'''
+note:
+this is for learning purpose. we didn't use the code in this file to finetune
+the model. we used the services offered by the replicate website/api instead.
+'''
+
 # Prepare dataset
 import json
 import pandas as pd

@@ -77,7 +77,7 @@ In case the file size exceeds Github's recommended maximum file size of 50.00 MB
 
 ### Configuration & Features:
 1. Finetuning usually involves using a domain related dataset. In this project, we decided to curate our own (Question-Answer) pairs dataset for finetuning and RAG.
-2. Domain-related files (txt and jsonl) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl*. Using Langchain, a vector database was created in `chroma` folder based on the data for RAG. More content could be added as needed. 
+2. Selected domain-related files (txt and jsonl) are stored in the `data` folder, such as *trivia.txt* and *s1_s2.jsonl*. Using Langchain, a vector database was created in `chroma` folder based on the data for RAG. More content could be added as needed. 
 3. The front-end and deployment is implemented with Streamlit.
 4. Option to select between differnet Llama2 chat API endpoints (base LLaMA2, finetuned LLaMA2, base with RAG, finetuned with RAG).
 5. Each model (base LLaMA2, finetuned LLaMA2, base with RAG, finetuned with RAG) runs on Replicate.
